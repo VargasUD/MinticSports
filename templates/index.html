@@ -1,0 +1,59 @@
+{% extends "ShemaPage.html" %} {% block contenido %}
+<link rel="stylesheet" href="{{url_for('static',filename='css/estilos.css')}}">
+
+
+<section id="views"></section>
+<div style="    position: absolute;
+margin-left: 626px;
+margin-top: -131px;" class="row">
+    <div style="position: absolute;
+    float: left;" class="col-md-4 ml-auto">
+
+        <a href="/cerrarsesion">Cerrar Sesión</a>
+    </div>
+</div>
+{%if mensaje %}
+<div id="mensaje2" class="alert alert-danger" role="alert">
+    {{mensaje}}
+    <script>
+        setTimeout(function() {
+            document.getElementById('mensaje2').remove();
+        }, 4000);
+    </script>
+</div>
+{%endif%}
+<div class="menu-wrap">
+    <input type="checkbox" class="toggler">
+    <div class="hamburger">
+        <div></div>
+    </div>
+    <div class="menu">
+        <div>
+            <div>
+                <ul>
+                    <li><a href="/categoria/categoria=Camisa"><b>Camisas</b></a></li>
+                    <li><a href="/categoria/categoria=Deportiva"><b>Deportivas</b></a></li>
+                    <li><a href="/categoria/categoria=Zapatos"><b>Zapatos</b></a></li>
+                    <li><a href="/buscar"><b>Buscar Producto</b></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="logo">
+    <img src="{{url_for('static',filename='img/nombre.png')}}" height="150px" width="600px" alt=""> <br>
+</div>
+<div style="    margin-left: 219px;" class="column">
+    <div>
+        <figure><img src="{{url_for('static',filename='img/camiseta.png')}}" height="200px" width="200px" /></figure>
+    </div>
+    <div>
+        <figure><img src="{{url_for('static',filename='img/balon.png')}}" height="200px" width="200px" /></figure>
+    </div>
+    <div>
+        <figure><img src="{{url_for('static',filename='img/guayos.png')}}" height="200px" width="200px" /></figure>
+    </div>
+</div>
+<!-- <script type="module" src="./index.js"></script>     -->
+{% endblock %}

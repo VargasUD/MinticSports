@@ -1,0 +1,12 @@
+body {
+    background: url(../img/backgroud.png);
+    background-size: cover;
+}
+
+img {
+    width: 45%;
+}
+
+p {
+    text-align: center;
+}

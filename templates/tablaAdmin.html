@@ -1,0 +1,150 @@
+{% extends "ShemaPage.html" %} {% block contenido %}
+
+
+<link rel="stylesheet" href="{{url_for('static',filename='css/tablaD.css')}}">
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 ml-auto">
+            <a href="/cerrarsesion">Cerrar Sesión</a>
+        </div>
+    </div>
+    {%if mensaje %}
+    <div id="mensaje2" class="alert alert-danger" role="alert">
+        {{mensaje}}
+        <script>
+            setTimeout(function() {
+                document.getElementById('mensaje2').remove();
+            }, 3000);
+        </script>
+    </div>
+    {%endif%}
+    <img src="{{url_for('static',filename='img/nombre.png')}}" class="rounded mx-auto d-block" alt="Logo Mintic">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/portalAdmin">Inicio</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Modificación</li>
+        </ol>
+    </nav>
+    <div class="row">
+
+        <table class="col-3">
+            <tr>
+                <td>
+                    {%if productoB%}
+                    <form method="POST" action="/editarproducto" enctype="multipart/form-data" tocomplete="off">
+                        <input type="hidden" id="id" name="id" value="{{id}}">
+
+                        <div class="form-group">
+                            <label for="fullName">Full Name*</label><label class="validation-error hide" id="fullNameValidationError">This field is required.</label>
+                            <input type="text" value="{{productoB[1]}}" name="fullName" id="fullName" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="empCode">Referencia</label>
+                            <input type="text" value="{{productoB[4]}}" name="empCode" id="empCode" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="getimage">Imagen</label>
+                            <input style="width: 216px;" type="file" id="getimage" name="getimage" class="btn btn-outline-success">
+                            <input type="hidden" id="img" name="img" value="{{productoB[5]}}">
+                            <img style="width: 50px;
+                                height: 50px;" src="../static/upload/{{productoB[5]}}">
+
+                        </div>
+                        <div class="form-group">
+                            <label for="precio">Precio</label>
+                            <input type="number" value="{{productoB[6]}}" name="precio" id="precio" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="categoria">Categoria</label>
+                            <select class="form-control " id="categoria" name="categoria">
+                                <option value="{{productoB[7]}}">{{productoB[7]}}</option>
+                                <option value="Camisa">Camisa</option>
+                                <option value="Deportiva">Deportiva</option>
+                                <option value="Zapatos">Zapatos</option>
+                                                                        
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cantidad">Cantidad</label>
+                            <input type="number" value="{{productoB[2]}}" name="cantidad" id="cantidad" class="form-control">
+                        </div>
+                        <div class="form-action-buttons">
+                            <input type="submit" value="Enviar">
+                        </div>
+                    </form>
+
+                    {%else%}
+                    <form method="POST" action="/modificacion" enctype="multipart/form-data" tocomplete="off">
+                        <div class="form-group">
+                            <label for="fullName">Full Name*</label><label class="validation-error hide" id="fullNameValidationError">This field is required.</label>
+                            <input type="text" name="fullName" id="fullName" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="empCode">Referencia</label>
+                            <input type="text" name="empCode" id="empCode" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="getimage">Imagen</label>
+                            <input type="file" id="getimage" name="getimage" class=" form-control btn btn-outline-success">
+                        </div>
+                        <div class="form-group">
+                            <label for="precio">Precio</label>
+                            <input type="number" name="precio" id="precio" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="categoria">Categoria</label>
+                            <select class="form-control " id="categoria" name="categoria">
+                                    <option value="Camisa">Camisa</option>
+                                    <option value="Deportiva">Deportiva</option>
+                                    <option value="Zapatos">Zapatos</option>
+                                                                            
+                                </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="cantidad">Cantidad</label>
+                            <input type="number" name="cantidad" id="cantidad" class="form-control">
+                        </div>
+
+                        <div class="form-action-buttons">
+                            <input type="submit" value="Enviar">
+                        </div>
+                    </form>
+                    {%endif%}
+                </td>
+            </tr>
+        </table>
+        <table class="list table table-hover table-dark col-8" id="employeeList">
+            <thead>
+                <tr>
+                    <th scope="col">Full Name</th>
+                    <th scope="col">Referencia</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Categoria</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {%if productos%} {% for product in productos %}
+                <tr id='{% print(product[0]) %}'>
+                    <td>{% print(product[1]) %}</td>
+                    <td>{% print(product[4]) %}</td>
+                    <td>{% print(product[3]) %}</td>
+                    <td>{% print(product[6]) %}</td>
+                    <td>{% print(product[2]) %}</td>
+                    <td>{% print(product[7]) %}</td>
+                    <td><a href="/editarproducto/id={% print(product[0]) %}"><button class="btn btn-info">Editar</button></a></td>
+                    <td><a href="/eliminarProducto/id={% print(product[0]) %}/img={%print(product[5])%}"><button class="btn btn-danger">Eliminar</button></a></td>
+                    <!-- <td><input class="btn btn-danger" type="button" value="Eliminar" onclick="deleteRow(this)" /></td> -->
+                </tr>
+                {% endfor %} {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- <script type="text/javascript" src="{{url_for('static',filename='js/tablaScript.js')}}"></script> -->
+{% endblock %}

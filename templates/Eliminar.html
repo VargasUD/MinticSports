@@ -1,0 +1,83 @@
+{% extends "ShemaPage.html" %} {% block contenido %}
+<link rel="stylesheet" href="{{url_for('static',filename='css/reglasVista6.css')}}">
+
+
+<img class="nombre" src="{{url_for('static',filename='img/nombre.png')}}" alt="Logo basico" style="width: 500px; height: 150px">
+
+<script lenguaje="javascrpit">
+    function validacantidad(form) {
+
+        if (form.cantidad.value < 0) {
+            form.cantidad.value = 0;
+            alert("No se encuentan artículos en el Stock");
+        }
+        if (form.cantidad.value > 10) {
+            form.cantidad.value = 10;
+            alert("Se encuentra la cantidad máxima de productos en el inventario");
+        }
+    }
+</script>
+<div class="menu-wrap">
+
+    <div class="menu">
+        <div>
+            <div>
+                <ul>
+                    <li><a href="/index"><b>Inicio</b></a></li>
+                    <li><a href="/actualizarAccesorios"><b>Actualizar producto</b></a></li>
+                    <li><a href="/buscar"><b>Buscar producto</b></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="contenedor1">
+    <img class="seleccioncolombia" src="{{url_for('static',filename='img/Camiseta_Col.jpg')}}" alt="Logo basico" style="width: 300px; height: 400px"><br>
+    <form name="actualizar1" method="POST" acction=" " target="_blank">
+        Produccto seleccionado: <b>Ref. 3215 <br><br> </b>
+        <input type="button" value=" + " onclick="actualizar1.cantidad.value++;
+            validacantidad(this.form)">
+        <!--Cantidad:--><input type="text" name="cantidad" value="1" size="2" readonly>
+        <input type="button" value=" - " onclick="actualizar1.cantidad.value--;
+            validacantidad(this.form)">
+        <br><br><button type="submit" onclick="makeAnOrder()">Eliminar Producto</button>
+    </form>
+</div>
+
+<div class="contenedor2">
+    <img class="guayos" src="{{url_for('static',filename='img/guayos.jpg')}}" alt="Logo basico" style="width: 300px; height: 400px"><br>
+    <form name="actualizar2" method="POST" acction=" " target="_blank">
+        Produccto seleccionado: <b>Ref. 3856 <br><br> </b>
+        <input type="button" value=" + " onclick="actualizar2.cantidad.value++;
+            validacantidad(this.form)">
+        <!--Cantidad:--><input type="text" name="cantidad" value="1" size="2" readonly>
+        <input type="button" value=" - " onclick="actualizar2.cantidad.value--;
+            validacantidad(this.form)">
+        <br><br><button type="submit" onclick="makeAnOrder()">Eliminar Producto</button>
+    </form>
+</div>
+
+<div class="contenedor3">
+    <img class="balon_camp" src="{{url_for('static',filename='img/balon_camp.jfif')}}" alt="Logo basico" style="width: 300px; height: 400px"><br>
+    <form name="actualizar3" method="POST" acction=" " target="_blank">
+        Produccto seleccionado: <b>Ref. 4517 <br><br> </b>
+        <input type="button" value=" + " onclick="actualizar3.cantidad.value++;
+            validacantidad(this.form)">
+        <!--Cantidad:--><input type="text" name="cantidad" value="1" size="2" readonly>
+        <input type="button" value=" - " onclick="actualizar3.cantidad.value--;
+            validacantidad(this.form)">
+        <br><br><button type="submit" onclick="makeAnOrder()">Eliminar Producto</button>
+    </form>
+</div>
+
+<div class="contenedor4">
+
+    <script>
+        function makeAnOrder() {
+            document.write("<h2>Se han eliminado los productos</h2>");
+            document.write("<h4> Verificar en el menú principal</h4>");
+        }
+    </script>
+
+</div>
+{% endblock %}

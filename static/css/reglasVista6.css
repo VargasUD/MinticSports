@@ -1,0 +1,94 @@
+body{
+    margin:0;
+    padding:0;
+    background: url(../img/backgroud.png) no-repeat center top;
+    background-size: cover;
+    font-family: 'Arial';
+    height: 100vh;
+}
+
+.nombre{
+    width: 210px;
+    height: 210px;
+    position: absolute;
+    top: 9%;
+    left: 37%;
+}
+
+.contenedor1{
+    width: 300px;
+    height: 100px;
+    border-radius: 50%;
+    position: absolute;
+    top: 30%;
+    left: calc(20% );
+    cursor: pointer;
+}
+
+.contenedor2{
+    width: 300px;
+    height: 100px;
+    border-radius: 50%;
+    position: absolute;
+    top: 30%;
+    left: calc(45% );
+    cursor: pointer;
+}
+
+.contenedor3{
+    width: 300px;
+    height: 100px;
+    border-radius: 50%;
+    position: absolute;
+    top: 30%;
+    left: calc(70% );
+    cursor: pointer;
+}
+
+.contenedor1 button[type="submit"],
+.contenedor1 input[type="button"]{
+    border: none;
+    outline: none;
+    height: 40px;
+    background: #1384DE;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+}
+.contenedor1 button[type="submit"]:hover{
+    cursor: pointer;
+    background: #ffc107;
+    color: #000;
+}
+
+.contenedor2 button[type="submit"],
+.contenedor2 input[type="button"]{
+    border: none;
+    outline: none;
+    height: 40px;
+    background: #1384DE;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+}
+.contenedor2 button[type="submit"]:hover{
+    cursor: pointer;
+    background: #ffc107;
+    color: #000;
+}
+
+.contenedor3 button[type="submit"],
+.contenedor3 input[type="button"]{
+    border: none;
+    outline: none;
+    height: 40px;
+    background: #1384DE;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+}
+.contenedor3 button[type="submit"]:hover{
+    cursor: pointer;
+    background: #ffc107;
+    color: #000;
+}

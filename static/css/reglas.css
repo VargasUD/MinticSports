@@ -1,0 +1,89 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: url(../img/backgroud.png) no-repeat center top;
+    background-size: cover;
+    font-family: 'Arial';
+    height: 100vh;
+}
+
+.nombre {
+    width: 210px;
+    height: 210px;
+    position: absolute;
+    top: 17%;
+    left: 20.5%;
+}
+
+.balon {
+    width: 210px;
+    height: 210px;
+    border-radius: 50%;
+    position: absolute;
+    top: 35%;
+    left: 25%;
+}
+
+.Login-box {
+    width: 320px;
+    height: 420px;
+    background: transparent;
+    color: #000;
+    top: 50%;
+    left: 70%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    padding: 70px 30px;
+}
+
+.Login-box .avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: absolute;
+    top: -50px;
+    left: calc(50% - 50px);
+}
+
+.Login-box h1 {
+    margin: 0;
+    padding: 0 0 20px;
+    text-align: center;
+    font-size: 30px;
+}
+
+.Login-box label {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    display: block;
+}
+
+.Login-box input {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.Login-box input[type="text"],
+.Login-box input[type="password"] {
+    border: none;
+    border-bottom: 1px solid black;
+    background: transparent;
+    outline: none;
+    height: 40px;
+    color: green;
+    font-size: 16px;
+}
+
+.Login-box .boton {
+    border: none;
+    outline: none;
+    height: 40px;
+    background: #1384DE;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+    width: 100%;
+    margin-bottom: 20px;
+}

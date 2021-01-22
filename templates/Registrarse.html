@@ -1,0 +1,82 @@
+{% extends "ShemaPage.html" %} {% block contenido %}
+<link rel="stylesheet" href="{{url_for('static',filename='css/registro.css')}}">
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <img src="{{url_for('static',filename='img/nombre.png')}}" class="rounded mx-auto d-block" alt="Logo Mintic Sports">
+            </div>
+        </div>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/portalAdmin">Inicio</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Registro Usuarios</li>
+            </ol>
+        </nav>
+    </div>
+    {%if mensaje2 %}
+    <div id="mensaje2" class="alert alert-danger" role="alert">
+        {{mensaje2}}
+        <script>
+            setTimeout(function() {
+                document.getElementById('mensaje2').remove();
+            }, 3000);
+        </script>
+    </div>
+    {%endif%}
+    <form class="needs-validation" action="/registroUsuarios" method="POST">
+        <div class="form-row">
+            <div class="col-md-6 mb-3">
+                <label for="nombre">Nick Usuario</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Usuario" required>
+
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="email">Correo electrónico</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-6 mb-3">
+                <label for="validationTooltip03">Contraseña</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="password2">Confirmar Contraseña</label>
+                <input type="password" class="form-control" id="password2" name="password2" required>
+                <div class="invalid-tooltip">
+                    Las contraseñas no coinciden.
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit">Guardar</button>
+    </form>
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        } else {
+                            alert('Usuario registrado con éxito');
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+    <script src="{{url_for('static',filename='js/ingresoPortal.js')}}"></script>
+    {% endblock %}

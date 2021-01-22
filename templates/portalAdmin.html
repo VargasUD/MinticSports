@@ -1,0 +1,35 @@
+{% extends "ShemaPage.html" %} {% block contenido %}
+<link rel="stylesheet" href="{{url_for('static',filename='css/portalAdmin.css')}}">
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 ml-auto">
+            <a href="/cerrarsesion">Cerrar Sesión</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <img src="{{url_for('static',filename='img/nombre.png')}}" class="rounded mx-auto d-block" alt="Logo Mintic Sports">
+            <p>{{user}}</p>
+        </div>
+    </div>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">Inicio</li>
+        </ol>
+    </nav>
+    <div class="row">
+        <div class="col">
+            <h2><a href="/modificacion">Ingresar a la modificación de productos</a></h2>
+        </div>
+        <div class="col">
+            <h2><a href="/registroUsuarios">Ingresar al registro de usuarios</a></h2>
+        </div>
+        <div class="col">
+            <h2><a href="/listarusuarios">Listar usuarios</a></h2>
+        </div>
+    </div>
+</div>
+<script src="{{url_for('static',filename='js/ingresoPortal.js')}}"></script>
+{% endblock %}

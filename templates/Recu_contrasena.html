@@ -1,0 +1,49 @@
+{% extends "ShemaPage.html" %} {% block contenido %}
+<link rel="stylesheet" href="{{url_for('static',filename='css/reglasVista3.css')}}">
+
+
+<img class="balon" src="{{url_for('static',filename='img/Balon mintic.png')}}" alt="Logo basico" style="width: 350px; height: 350px">
+<img class="nombre" src="{{url_for('static',filename='img/nombre.png')}}" alt="Logo basico" style="width: 500px; height: 150px">
+
+<div class="Login-box">
+    {%if mensaje %}
+    <div id="mensaje" class="user_error">
+        <script>
+            setTimeout(function() {
+                document.getElementById('mensaje').remove();
+            }, 4000);
+        </script>
+        <p>{{mensaje}}</p>
+
+
+    </div>
+    {%endif%}
+    <img class="avatar" src="{{url_for('static',filename='img/login.png')}}" alt="Logo basico">
+
+    <h1>¿Olvidaste tu contraseña?</h1>
+    <p>Ingresa tu correo electrónico y te enviaremos un e-mail de confirmación para recurerarla</p>
+    <form name="frmLogin" action="/recuperarContrasena">
+        {{ formforg.email.label }} {{ formforg.email(placeholder="Ingrese su Correo")}}
+        <!--  -->
+        {{ formforg.enviar2(class_="boton")}}
+
+        <br>
+        <!--<p align="right">Diseñado por: MinTic-UNINORTE</p>-->
+    </form>
+    <a href="/login">Volver al Portal</a>
+
+</div>
+<style>
+    .Login-box .user_error {
+        margin-top: 5px;
+        width: 100%;
+        font-size: 15px;
+        color: #c62828;
+        background: rgba(255, 0, 0, 0.1);
+        text-align: center;
+        padding: 5px 8px;
+        border-radius: 3px;
+        border: 1px solid #ef9a9a;
+    }
+</style>
+{% endblock %}

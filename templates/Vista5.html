@@ -1,0 +1,113 @@
+ {% extends "ShemaPage.html" %} {% block contenido %}
+<link rel="stylesheet" href="{{url_for('static',filename='css/reglasVista5.css')}}">
+
+
+
+
+<img class="nombre" src="{{url_for('static',filename='img/nombre.png')}}" alt="Logo basico" style="width: 500px; height: 150px">
+
+
+
+
+
+<div class="menu-wrap">
+
+    <div class="menu">
+        <div>
+            <div>
+                <ul>
+                    <li><a href="/index"><b>Inicio</b></a></li>
+                    <li><a href="/categoria/categoria=Camisa"><b>Camisas</b></a></li>
+                    <li><a href="/categoria/categoria=Deportiva"><b>Deportivas</b></a></li>
+                    <li><a href="/categoria/categoria=Zapatos"><b>Zapatos</b></a></li>
+                    <li><a href="/buscar"><b>Buscar Producto</b></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 ml-auto">
+            <a style="float: right;" href="/cerrarsesion">Cerrar Sesión</a>
+        </div>
+    </div>
+
+
+
+    <div style="margin-top: 146px;" class="container">
+        {%if mensaje %}
+        <div id="mensaje" class="alert alert-warning" role="alert">
+            {{mensaje}}
+            <script>
+                setTimeout(function() {
+                    document.getElementById('mensaje').remove();
+                }, 5000);
+            </script>
+        </div>
+        {%endif%}
+        <div class="card-columns">
+            {%if data%} {% for product in data %}
+
+            <div class="card">
+                <form name="actualizar{% print(product[0]) %}" method="POST" action="/categoria">
+                    <input type="hidden" id="id" name="id" value="{% print(product[0]) %}">
+                    <input type="hidden" id="categoria" name="categoria" value="{% print(product[7])%}">
+                    <img style="width: 94px; margin-left: 122px;" src="../static/upload/{{product[5]}}" id="img" name="img" class="card-img-top ubicacion" alt="...">
+                    <div class="card-body">
+
+                        <h5 class="card-title">Nombre: {% print(product[1]) %}</h5>
+                        <p>Num. Ref: {% print(product[4]) %}</p>
+                        <p>Categoria: {% print(product[7]) %}</p>
+                        <p>Precio: {% print(product[6]) %}</p>
+                        <label for="cantidad">Cantidad:</label>
+                        <input type="text" name="cantidad" id="cantidad" value="{% print(product[2]) %}" size="2" readonly>
+                        <br><input type="button" class="btn btn-info" value="Aumentar" onclick="actualizar{% print(product[0]) %}.cantidad.value++;
+            validacantidad(this.form)">
+                        <input type="button" class="btn btn-info" value="Disminuir" onclick="actualizar{% print(product[0]) %}.cantidad.value--;
+            validacantidad(this.form)">
+                    </div>
+                    <input style="    margin-left: 54px;" type="submit" value="Update" class="btn btn-success">
+                </form>
+                <a href="/eliminarProducto/id={% print(product[0]) %}/img={% print(product[5]) %}/categoria={% print(product[7]) %}"><button style="    float: right;
+                    margin-top: -38px;
+                    margin-right: 38px;" class="btn btn-danger">Eliminar</button></a>
+            </div>
+            <script lenguaje="javascrpit">
+                function validacantidad(form) {
+                    if (form.cantidad.value < 0) {
+                        form.cantidad.value = 0;
+                        alert("No se encuentan artículos en el Stock");
+                    }
+                    if (form.cantidad.value > 1000) {
+                        form.cantidad.value = 1000;
+                        alert("Se encuentra la cantidad máxima de productos en el inventario");
+                    }
+
+
+                }
+            </script>
+            {% endfor %} {%else%}
+            <div class="card-columns">
+                <div class="card-body">
+                    <h5 class="card-title">NO HAY PRODUCTOS PARA LA CATEGORIA SELECCIONADA</h5>
+                </div>
+            </div>
+            {%endif%}
+
+
+        </div>
+
+
+
+    </div>
+
+
+
+
+</div>
+
+
+
+
+
+</div>
+{% endblock %}
